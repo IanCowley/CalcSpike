@@ -10,12 +10,12 @@ namespace CalcSpike.Tests
 	    {
 	        _resultPersistence = new InMemoryResultPersistence();
             _calcCache = new CalcCache(_resultPersistence, new BasicLogger());
-	        _calcEngine = new CalcEngine();
+	        _calcEngine = new CalcEngine(_calcCache);
 	    };
 
 	    public class when_adding_two_numbers_together
 	    {
-	        Because of = () => _result = _calcEngine.Add(1, 2);
+	        Because of = () => _result = _calcEngine.AddAsync(1, 2).Result;
 
 	        It should_have_calculated_result = () => _result.ShouldEqual(3);
 

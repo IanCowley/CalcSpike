@@ -1,10 +1,23 @@
-﻿namespace CalcSpike.Core
+﻿using System.Threading.Tasks;
+
+namespace CalcSpike.Core
 {
     public class CalcEngine
     {
-        public int Add(int left, int right)
+        readonly CalcCache _calcCache;
+        readonly ILogger _logger;
+
+        public CalcEngine(CalcCache calcCache, ILogger logger)
         {
-            return left + right;
+            _calcCache = calcCache;
+            _logger = logger;
+        }
+
+        public async Task<int> AddAsync(int left, int right)
+        {
+            _logger.Trace($"Adding {left}, {right}");
+
+            return await _calcCache.GetAnswerOrCalcAsync(left, right, (l, r) => l + r);
         }
     }
 }

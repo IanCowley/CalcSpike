@@ -1,0 +1,9 @@
+D:\Sandbox\CalcSpike\CalcSpike.Tests\bin\Debug\CalcSpike.Tests.dll
+D:\Sandbox\CalcSpike\CalcSpike.Tests\bin\Debug\CalcSpike.Tests.pdb
+D:\Sandbox\CalcSpike\CalcSpike.Tests\bin\Debug\CalcSpike.Core.dll
+D:\Sandbox\CalcSpike\CalcSpike.Tests\bin\Debug\Machine.Specifications.dll
+D:\Sandbox\CalcSpike\CalcSpike.Tests\bin\Debug\Machine.Specifications.Should.dll
+D:\Sandbox\CalcSpike\CalcSpike.Tests\bin\Debug\CalcSpike.Core.pdb
+D:\Sandbox\CalcSpike\CalcSpike.Tests\obj\Debug\CalcSpike.Tests.csprojResolveAssemblyReference.cache
+D:\Sandbox\CalcSpike\CalcSpike.Tests\obj\Debug\CalcSpike.Tests.dll
+D:\Sandbox\CalcSpike\CalcSpike.Tests\obj\Debug\CalcSpike.Tests.pdb
