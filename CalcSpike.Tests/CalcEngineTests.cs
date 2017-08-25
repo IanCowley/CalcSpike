@@ -8,10 +8,10 @@ namespace CalcSpike.Tests
 	{
 	    Establish context = () =>
 	    {
+	        _resultPersistence = new InMemoryResultPersistence();
+            _calcCache = new CalcCache(_resultPersistence, new BasicLogger());
 	        _calcEngine = new CalcEngine();
 	    };
-
-	    static CalcEngine _calcEngine;
 
 	    public class when_adding_two_numbers_together
 	    {
@@ -19,7 +19,13 @@ namespace CalcSpike.Tests
 
 	        It should_have_calculated_result = () => _result.ShouldEqual(3);
 
+	        It should_have_persisted_result = () => _resultPersistence.Exists(1, 2).ShouldEqual(true);
+
             static int _result;
 	    }
-    }
+		
+	    static CalcEngine _calcEngine;
+	    static CalcCache _calcCache;
+	    static ICalcResultPersistence _resultPersistence;
+	}
 }
