@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace CalcSpike.Core
 {
     public interface ICalcCache
     {
-        Task<int> GetAnswerOrCalcAsync(int left, int right, Func<int, int, int> calc);
+        int GetAnswerOrCalc(string accountName, int left, int right, Func<int, int, int> calc);
     }
 
     public class CalcCache : ICalcCache
@@ -19,18 +18,17 @@ namespace CalcSpike.Core
             _logger = logger;
         }
 
-        public async Task<int> GetAnswerOrCalcAsync(int left, int right, Func<int, int, int> calc)
+        public int GetAnswerOrCalc(string calcAccountName, int left, int right, Func<int, int, int> calc)
         {
-            if (_calcResultPersistence.Exists(left, right))
+            if (_calcResultPersistence.Exists(calcAccountName, left, right))
             {
-                return await _calcResultPersistence.GetAsync(left, right);
+                return _calcResultPersistence.Get(calcAccountName, left, right);
             }
             else
             {
                 var result = calc(left, right);
                 _logger.Trace($"Storing result for {left}, {right}, result was {result}");
-                await _calcResultPersistence.PersistAsync(left, right, result);
-                
+                _calcResultPersistence.Persist(calcAccountName, left, right, result);
                 return result;
             }
         }

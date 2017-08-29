@@ -13,11 +13,10 @@ namespace CalcSpike.Core
             _logger = logger;
         }
 
-        public async Task<int> AddAsync(int left, int right)
+        public int AddAsync(string calcAccountName, int left, int right)
         {
             _logger.Trace($"Adding {left}, {right}");
-
-            return await _calcCache.GetAnswerOrCalcAsync(left, right, (l, r) => l + r);
+            return _calcCache.GetAnswerOrCalc(calcAccountName, left, right, (l, r) => l + r);
         }
     }
 }

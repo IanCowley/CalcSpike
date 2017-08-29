@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 namespace CalcSpike.Core
@@ -16,28 +12,28 @@ namespace CalcSpike.Core
             _persistence = new ConcurrentDictionary<string, int>();    
         }
 
-        public bool Exists(int left, int right)
+        public bool Exists(string calcAccountName, int left, int right)
         {
-            string storageKey = GetStorageKey(left, right);
-            return _persistence.ContainsKey(storageKey);
+            string resultKey = GetResultKey(left, right);
+            return _persistence.ContainsKey(resultKey);
         }
 
-        public Task<int> GetAsync(int left, int right)
+        public int Get(string calcAccountName, int left, int right)
         {
-            if (!Exists(left, right))
+            if (!Exists(calcAccountName, left, right))
             {
-                throw new CalcResultPersistenceException($"Have not stored {GetStorageKey(left, right)}");
+                throw new CalcResultPersistenceException($"Have not stored {GetResultKey(left, right)}");
             }
 
-            return Task.FromResult(_persistence[GetStorageKey(left, right)]);
+            return _persistence[GetResultKey(left, right)];
         }
 
-        public async Task PersistAsync(int left, int right, int result)
+        public void Persist(string calcAccountName, int left, int right, int result)
         {
-            await Task.Run( () => _persistence.AddOrUpdate(GetStorageKey(left, right), result, (key, value) => result));
+            _persistence.AddOrUpdate(GetResultKey(left, right), result, (key, value) => result);
         }
 
-        string GetStorageKey(int left, int right)
+        string GetResultKey(int left, int right)
         {
             return $"{left}-{right}";
         }

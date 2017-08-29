@@ -4,12 +4,19 @@ using Machine.Specifications;
 namespace CalcSpike.Tests
 {
 	[Subject(typeof(CalcEngine))]
-    public class CalcEngineTests
+    public class CalcEngineIntegrationTests
 	{
 	    Establish context = () =>
 	    {
 	        _calcAccountName = "TestAccountName1";
-	        _resultPersistence = new InMemoryResultPersistence();
+
+	        var storageAccountName = "I would replace this with the real thing";
+	        var storageAccountKey = "I would replace this with the real thing";
+
+            _resultPersistence = new AzureResultPersistence(
+                new AzureResultTableStore(storageAccountName, storageAccountKey), 
+                new AzureResultPublsher(new AzureResultQueueStore(storageAccountName, storageAccountKey)));
+
             _calcCache = new CalcCache(_resultPersistence, new BasicLogger());
 	        _calcEngine = new CalcEngine(_calcCache, new BasicLogger());
 	    };
