@@ -1,0 +1,26 @@
+*obj/
+*debug/
+*release/
+_ReSharper*
+*.suo
+*.user
+_ReSharper*
+obj
+*.bin
+*.dll
+*.swp
+*.suo
+*.ncb
+binaries
+CLI Debug
+*.user
+.svn
+*.sln.cache
+Releases
+build
+*.svclog
+*.log
+*.csx
+*.sln.docstates
+*.dotCover
+packages

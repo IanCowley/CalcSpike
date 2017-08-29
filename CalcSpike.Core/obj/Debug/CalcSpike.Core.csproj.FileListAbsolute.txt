@@ -1,5 +1,0 @@
-D:\Sandbox\CalcSpike\CalcSpike.Core\bin\Debug\CalcSpike.Core.dll
-D:\Sandbox\CalcSpike\CalcSpike.Core\bin\Debug\CalcSpike.Core.pdb
-D:\Sandbox\CalcSpike\CalcSpike.Core\obj\Debug\CalcSpike.Core.csprojResolveAssemblyReference.cache
-D:\Sandbox\CalcSpike\CalcSpike.Core\obj\Debug\CalcSpike.Core.dll
-D:\Sandbox\CalcSpike\CalcSpike.Core\obj\Debug\CalcSpike.Core.pdb
